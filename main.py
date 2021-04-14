@@ -1,5 +1,4 @@
 from bs4 import BeautifulSoup
-from datetime import datetime
 import requests
 import csv
 
@@ -54,7 +53,6 @@ def find_jobs(current_page, last_page, url, soup):
             })
     print(f'File saved')
 
-startTime = datetime.now()
 
 url = 'https://dev.bg/company/jobs/junior-intern/sofiya/'
 html_text = requests.get(url, timeout=5)
@@ -70,4 +68,3 @@ if html_text.status_code == 200:
 else:
     print('404 error')
 
-print(datetime.now() - startTime)
