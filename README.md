@@ -5,7 +5,9 @@ A web crawler looking for job vacancies for Junior positions at dev.bg written i
 1. To see how it works
 2. Assistance in sifting through available positions potentially quicker
 
-It's quite basic and potentially very slow (22s for sifting through about 122 offers on 5 pages)
+It's quite basic and possibly very slow (20-50s for sifting through about 120 offers on 5 pages)
+
+Edit: lowered time to 14s by using SoupStrainer 
 
 
 ### Installation
