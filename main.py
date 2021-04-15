@@ -1,4 +1,5 @@
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, SoupStrainer
+from datetime import datetime
 import requests
 import csv
 
@@ -9,7 +10,9 @@ def get_skills(url):
         get_job_html = get_job_html.text
     else:
         print('404 error')
-    job_soup = BeautifulSoup(get_job_html, 'lxml')
+    strainer = SoupStrainer('div', attrs={'class': 'tag-name'})
+    job_soup = BeautifulSoup(get_job_html, 'lxml', parse_only=strainer)
+    #job_soup = BeautifulSoup(get_job_html, 'lxml')
     skills_elements = job_soup.find_all('div', class_='tag-name')
     return [skill.text.strip() for skill in skills_elements]
 
@@ -53,6 +56,7 @@ def find_jobs(current_page, last_page, url, soup):
             })
     print(f'File saved')
 
+startTime = datetime.now()
 
 url = 'https://dev.bg/company/jobs/junior-intern/sofiya/'
 html_text = requests.get(url, timeout=5)
@@ -68,3 +72,4 @@ if html_text.status_code == 200:
 else:
     print('404 error')
 
+print(datetime.now() - startTime)
